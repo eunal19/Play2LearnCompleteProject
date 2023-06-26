@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/d01149debc.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Play2Learn</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="/index.html" class="navbar-brand">
+        <img src="/images/Play2Learn.png" alt="Play2Learn" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Games
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/games/anagram-hunt.html"
+                >Anagram Hunt</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/games/math-facts-practice.html"
+                >Math Facts Problem</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <body>
+
+        <div id="app" class="container text-center">
+          <template v-if="gameState === 'start'">
+            <h1>Anagram Hunt</h1>
+            <label for="wordLength">Word Length:</label>
+            <select id="wordLength" v-model="selectedWordLength" class="form-control">
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+            </select>
+            <div class="my-3">
+              <ol class="text-left">
+                <li>Choose Word Length.</li>
+                <li>Press <strong>Play</strong>.</li>
+                <li>How many anagrams can you find in a minute?</li>
+              </ol>
+            </div>
+            <div class="my-3">
+              <button @click="startGame" class="btn btn-primary">Play</button>
+            </div>
+          </template>
+  
+          <template v-if="gameState === 'play'">
+            <h1 class="mb-4">Anagram Hunt</h1>
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3">
+                      <span><strong> Score: {{ score }} </strong></span>
+                      <span><strong> Time Left: {{ timeLeft }} </strong></span>
+                    </div>
+                    <hr>
+                    <p class="card-text">{{ currentWord }} ({{ numAnagrams }} left)</p>
+                    <div class="d-flex justify-content-center">
+                      <input placeholder="Type here" type="text" v-model="guess" @keyup.enter="checkGuess" :disabled="isDisabled" class="form-control-sm">
+                      <div class="input-group-append">
+
+                      </div>
+                    </div>
+                    <ul class="list-unstyled">
+                      <li v-for="(word, index) in correctGuesses">{{ index + 1 }}. {{ word }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          
+          <template v-if="gameState === 'gameOver'">
+            <h1>Anagram Hunt</h1>
+            <h2>Time's Up!</h2>
+          <h1><strong class="big">You got</strong></h1>
+          <div class="huge"><h1>{{ score }}</h1></div>
+          <strong class="big"><h2>Anagrams</h2></strong>
+            
+            <button @click="resetGame" class="btn btn-primary form-control m-1">Play Again</button>
+            <button @click="goToStartScreen" class="btn btn-secondary form-control m-1">Back to Start Screen</button>
+          </template>
+        </div>
+    
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+      <script>
+        new Vue({
+          el: '#app',
+          data() {
+            return {
+              gameState: 'start',
+              selectedWordLength: '',
+              words: {
+                "5": [
+                  ["abets", "baste", "betas", "beast", "beats"],
+                  ["acres", "cares", "races", "scare"],
+                  ["alert", "alter", "later"],
+                  ["angel", "angle", "glean"],
+                  ["baker", "brake", "break"],
+                  ["bared", "beard", "bread", "debar"],
+                  ["dater", "rated", "trade", "tread"],
+                  ["below", "bowel", "elbow"],
+                  ["caret", "cater", "crate", "trace", "react"]
+                ],
+                "6": [
+                  ["arrest", "rarest", "raster", "raters", "starer"],
+                  ["carets", "caters", "caster", "crates", "reacts", "recast", "traces"],
+                  ["canter", "nectar", "recant", "trance"],
+                  ["danger", "gander", "garden", "ranged"],
+                  ["daters", "trades", "treads", "stared"]
+                ],
+                "7": [
+                  ["allergy", "gallery", "largely", "regally"],
+                  ["aspired", "despair", "diapers", "praised"],
+                  ["claimed", "decimal", "declaim", "medical"],
+                  ["dearths", "hardest", "hatreds", "threads", "trashed"],
+                  ["detains", "instead", "sainted", "stained"]
+                ],
+                "8": [
+                  ["parroted", "predator", "prorated", "teardrop"],
+                  ["repaints", "painters", "pantries", "pertains"],
+                  ["restrain", "retrains", "strainer", "terrains", "trainers"],
+                  ["construe", "counters", "recounts", "trounces"]
+                ]
+              },
+              currentWord: '',
+              numAnagrams: 0,
+              score: 0,
+              timeLeft: 60,
+              correctGuesses: [],
+              guess: ''
+            };
+          },
+          methods: {
+            startGame() {
+              this.gameState = 'play';
+              this.currentWord = '';
+              this.numAnagrams = 0;
+              this.score = 0;
+              this.timeLeft = 60;
+              this.correctGuesses = [];
+              this.guess = '';
+    
+              this.getRandomWord();
+              this.startTimer();
+            },
+            getRandomWord() {
+              const wordArray = this.words[this.selectedWordLength];
+              const randomIndex = Math.floor(Math.random() * wordArray.length);
+              const randomWord = wordArray[randomIndex];
+    
+              this.currentWord = randomWord[0];
+              this.numAnagrams = randomWord.length - 1;
+            },
+            startTimer() {
+              const timer = setInterval(() => {
+                if (this.timeLeft > 0) {
+                  this.timeLeft--;
+                } else {
+                  clearInterval(timer);
+                  this.gameState = 'gameOver';
+                }
+              }, 1000);
+            },
+            checkGuess() {
+              if (this.guess === this.currentWord || this.correctGuesses.includes(this.guess)) {
+                this.guess = '';
+                return;
+              }
+    
+              const isAnagram = this.words[this.selectedWordLength].some((wordArr) => {
+                return wordArr.includes(this.guess);
+              });
+    
+              if (isAnagram) {
+                this.score++;
+                this.numAnagrams--;
+                this.correctGuesses.push(this.guess);
+              }
+    
+              this.guess = '';
+    
+              if (this.numAnagrams === 0) {
+                this.getRandomWord();
+              }
+            },
+            resetGame() {
+              this.gameState = 'start';
+            },
+            goToStartScreen() {
+              this.gameState = 'start';
+              this.selectedWordLength = '';
+            }
+          },
+          computed: {
+            isDisabled() {
+              return this.timeLeft === 0 || this.numAnagrams === 0;
+            }
+          }
+        });
+      </script>
+    
+
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <div class="footer-content">
+          <div class="copyright">&copy; 2020 Play2Learn</div>
+          <ul class="social-icons">
+            <li>
+              <a href="https://instagram.com/"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li>
+              <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="/contact-us.html"><i class="fas fa-envelope"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <style>#app {
+      margin: auto;
+      width: 380px;
+    }</style>
+  </body>
+</html>

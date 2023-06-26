@@ -1,0 +1,245 @@
+/* NavBar Section */
+
+.navbar .dropdown-menu {
+  margin-top: 0;
+}
+
+/* Calculator Section */
+
+.calculator input[type="text"] {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+.calculator {
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 360px;
+  border: 1x solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+}
+
+button {
+  height: 60px;
+  font-size: 2rem !important;
+}
+
+.calculator-keys {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+#result {
+  width: auto;
+  padding: 20px;
+}
+
+/* Calculator Section */
+
+/* Footer Section */
+
+.footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social-icons {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.social-icons li:last-child {
+  margin-right: 0;
+}
+
+.social-icons a {
+  color: #555;
+}
+
+/* Footer Section */
+
+/* LogIn Page */
+
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 50px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.login-container button {
+  width: 98%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.register-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* LogIn Page */
+
+/* Register Page */
+
+.register-container {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 60px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.register-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-container input[type="email"],
+.register-container input[type="password"] {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-container button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.age-checkbox {
+  margin-bottom: 15px;
+}
+
+.login-link {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Register Page */
+
+/* About Page */
+
+.about-us-container {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 40px;
+  background-color: #fff;
+  border: 1px solid gray;
+}
+
+/* About Page */
+
+/* Contact Us Page */
+
+.contact-us-container {
+  border: 1px solid lightgray;
+  max-width: 400px;
+  margin: auto;
+  margin-top: 100px;
+  padding: 55px;
+  background-color: #fff;
+}
+
+.contact-us-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Contact Us Page */
+
+/* Index Home Page */
+
+.game-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-box {
+  width: 400px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.play-button {
+  width: 20%;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Index Home Page */

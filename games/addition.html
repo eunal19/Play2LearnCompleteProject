@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/d01149debc.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/styles.css">
+  <title>Play2Learn</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a href="/index.html" class="navbar-brand"><img src="/images/Play2Learn.png" alt="Play2Learn"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+            Games
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/games/anagram-hunt.html">Anagram Hunt</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/games/math-facts-practice.html">Math Facts Problem</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login.html">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about.html">About</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 calculator">
+        <h1 style="margin: auto">Math Facts Practice</h1>
+        <h4 style="text-align: center">Addition</h4>
+        <div>
+          <h1><span id="intext"></span> + <span id="intext1"></span></h1>
+        </div>
+        <div class="calculator card display-box">
+          <input autofocus type="text" id="result" />
+          <div class="calculator-keys">
+            <button type="button" value="1" class="btn btn-secondary waves-effect" onclick="display('1')">1</button>
+            <button type="button" value="2" class="btn btn-secondary waves-effect" onclick="display('2')">2</button>
+            <button type="button" value="3" class="btn btn-secondary waves-effect" onclick="display('3')">3</button>
+            <button type="button" value="4" class="btn btn-secondary waves-effect" onclick="display('4')">4</button>
+            <button type="button" value="5" class="btn btn-secondary waves-effect" onclick="display('5')">5</button>
+            <button type="button" value="6" class="btn btn-secondary waves-effect" onclick="display('6')">6</button>
+            <button type="button" value="7" class="btn btn-secondary waves-effect" onclick="display('7')">7</button>
+            <button type="button" value="8" class="btn btn-secondary waves-effect" onclick="display('8')">8</button>
+            <button type="button" value="9" class="btn btn-secondary waves-effect" onclick="display('9')">9</button>
+            <button type="button" value="0" class="btn btn-secondary waves-effect" onclick="display('0')">0</button>
+            <button type="button" class="btn btn-danger" value="CLEAR" onclick="clearScreen()" id="clear">Clear</button>
+          </div>
+          <div class="show-answer"><span id="ans"></span></div>
+          <div id="score">Your score: 0</div>
+          <button class="btn" id="startBtn" onclick="startGame()">START</button>
+          <div id="timeDisplay" hidden>Time Left: 30</div>
+          <button class="btn" onclick="Game()" id="checkAns" disabled>Check Answer</button>
+        </div>
+
+        <script src="script.js"></script>
+        <script>
+          let n1 = Math.floor(Math.random() * 20 + 1);
+          let n2 = Math.floor(Math.random() * 20 + 1);
+          var score = 0;
+          document.getElementById("intext").innerHTML = n1;
+          document.getElementById("intext1").innerHTML = n2;
+          let adds = n1 + n2;
+
+          function Game() {
+            var user = document.getElementById("result").value;
+
+            if (user == adds) {
+              document.getElementById("ans").innerHTML = "Well Done! Your Answer is Correct";
+              score++;
+              document.getElementById("score").innerText = "Your score " + score;
+            } else {
+              document.getElementById("ans").innerHTML = "Correct Answer " + adds + ". Try Again";
+              score--;
+              document.getElementById("score").innerText = "Your score " + score;
+            }
+
+            document.getElementById("result").value = "";
+
+            n1 = Math.floor(Math.random() * 20 + 1);
+            n2 = Math.floor(Math.random() * 20 + 1);
+
+            document.getElementById("intext").innerHTML = n1;
+            document.getElementById("intext1").innerHTML = n2;
+
+            adds = n1 + n2;
+          }
+
+          function clearScreen() {
+            document.getElementById("result").value = "";
+          }
+
+          function display(value) {
+            document.getElementById("result").value += value;
+          }
+
+          let timeLeft = 30;
+          let timeInterval;
+
+          function startGame() {
+            document.getElementById("startBtn").disabled = true;
+            document.getElementById("checkAns").disabled = false;
+
+            let timeDisplay = document.getElementById('timeDisplay');
+            timeDisplay.hidden = false;
+            timeInterval = setInterval(function () {
+              timeLeft--;
+              timeDisplay.innerHTML = "Time Left: " + timeLeft;
+              if (timeLeft == 0) {
+                clearInterval(timeInterval);
+                document.getElementById("timeDisplay").innerHTML = "<h6 style=\"color:red\">Times Up</h6><h3>Your final score is: </h3><h1>" + score + "</h1><a href=\"/games/math-facts-practice.html\" class=\"btn\">Play Again</a>";
+                document.getElementById("timeDisplay").style.fontWeight = "600";
+                document.getElementById("timeDisplay").style.fontSize = "40px";
+                document.getElementById("gameSection").style.display = "none";
+                document.getElementById("againBtn").style.display = "block";
+              }
+            }, 1000);
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer fixed-bottom">
+    <div class="container">
+      <div class="footer-content">
+        <div class="copyright">
+          &copy; 2020 Play2Learn
+        </div>
+        <ul class="social-icons">
+          <li><a href="https://instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+          <li><a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a></li>
+          <li><a href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a></li>
+          <li><a href="/contact-us.html"><i class="fa-solid fa-envelope"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

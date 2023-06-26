@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/d01149debc.js"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Play2Learn</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="/index.html" class="navbar-brand"
+        ><img src="/images/Play2Learn.png" alt="Play2Learn Logo"
+      /></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown">
+              Games
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/games/anagram-hunt.html"
+                >Anagram Hunt</a
+              >
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/games/math-facts-practice.html"
+                >Math Facts Problem</a
+              >
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="m-5 p-3" id="happy"><strong>Happy Client Say...</strong></div>
+    <div class="ml-5 pl-3" id="quote"></div>
+    <div class="mr-5 text-right" id="author"></div>
+
+
+    <div class="container">
+      <div class="row mt-6">
+        <div class="col-sm-12 game-container">
+          <div class="game-box">
+            <h2 class="game-title">Anagram Game</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+              similique voluptatibus assumenda blanditiis dolores quis,
+              accusamus, amet delectus voluptatum ab nihil vitae! Doloremque non
+              quisquam obcaecati sit laborum atque ipsa.
+            </p>
+            <div class="text-center">
+              <button
+                onclick="location.href='/games/anagram-hunt.html'"
+                class="play-button">
+                Play
+              </button>
+            </div>
+          </div>
+          <div class="game-box">
+            <h2 class="game-title">Math Game</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
+              similique voluptatibus assumenda blanditiis dolores quis,
+              accusamus, amet delectus voluptatum ab nihil vitae! Doloremque non
+              quisquam obcaecati sit laborum atque ipsa.
+            </p>
+            <div class="text-center">
+              <button
+                onclick="location.href='/games/math-facts-practice.html'"
+                class="play-button">
+                Play
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // JavaScript code
+      const quotes = [
+        {
+          text: "The best way to predict the future is to invent it.",
+          author: "Alan Kay",
+        },
+        {
+          text: "If you want to go fast, go alone. If you want to go far, go together.",
+          author: "African proverb",
+        },
+        {
+          text: "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+          author: "Nelson Mandela",
+        },
+      ];
+
+      let currentQuoteIndex = 0;
+
+      function rotateQuote() {
+        const quoteText = document.getElementById("quote");
+        const quoteAuthor = document.getElementById("author");
+        const currentQuote = quotes[currentQuoteIndex];
+
+        quoteText.innerText = currentQuote.text;
+        quoteAuthor.innerText = currentQuote.author;
+
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+      }
+
+      rotateQuote(); // initial quote
+
+      setInterval(rotateQuote, 10000); // rotate quote every 10 seconds
+    </script>
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <div class="footer-content">
+          <div class="copyright">&copy; 2020 Play2Learn</div>
+          <ul class="social-icons">
+            <li>
+              <a href="https://instagram.com/"
+                ><i class="fa-brands fa-instagram"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://twitter.com/"
+                ><i class="fa-brands fa-twitter"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/"
+                ><i class="fa-brands fa-facebook"></i
+              ></a>
+            </li>
+            <li>
+              <a href="contact-us.html"><i class="fa-solid fa-envelope"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

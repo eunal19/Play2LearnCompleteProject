@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/d01149debc.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Play2Learn</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a href="/index.html" class="navbar-brand">
+        <img src="/images/Play2Learn.png" alt="Play2Learn" />
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+              Games
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/games/anagram-hunt.html">Anagram Hunt</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/games/math-facts-practice.html">Math Facts Problem</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about.html">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section>
+      <div class="container">
+        <div class="col-md-6 offset-md-3 calculator" id="mathgame">
+          <h1>Math Facts Practice</h1>
+          <div id="demo"></div>
+          <div class="select">
+            <label for="operation-select">Select an operation:</label>
+            <div>
+              <p class="text-left">
+                1. Select Operation
+                <br />
+                2. Press <strong>Go</strong>
+                <br />
+                3. How many problems can you solve in 30 seconds?
+              </p>
+            </div>
+
+            <div>
+              <select id="operation-select">
+                <option value="">-- Select --</option>
+                <option value="addition">Addition</option>
+                <option value="division">Division</option>
+                <option value="multiplication">Multiplication</option>
+                <option value="subtraction">Subtraction</option>
+              </select>
+            </div>
+
+            <div>
+              <button class="btn btn-primary" onclick="go()">Go</button>
+            </div>
+          </div>
+
+          <script>
+            function go() {
+              var selectValue = document.getElementById("operation-select").value;
+
+              switch (selectValue) {
+                case "addition":
+                  window.location.href = "addition.html";
+                  break;
+                case "division":
+                  window.location.href = "division.html";
+                  break;
+                case "multiplication":
+                  window.location.href = "multiplication.html";
+                  break;
+                case "subtraction":
+                  window.location.href = "subtraction.html";
+                  break;
+                default:
+                  alert("Please select an operation.");
+              }
+            }
+          </script>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <div class="footer-content">
+          <div class="copyright">
+            &copy; 2020 Play2Learn
+          </div>
+          <ul class="social-icons">
+            <li>
+              <a href="https://instagram.com/">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://twitter.com/">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/">
+                <i class="fab fa-facebook"></i>
+              </a>
+            </li>
+            <li>
+              <a href="/contact-us.html">
+                <i class="far fa-envelope"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const dropdown = document.getElementById("operation-select");
+
+      dropdown.addEventListener("change", () => {
+        const additionContent = document.getElementById("addition-content");
+        const subtractionContent = document.getElementById("subtraction-content");
+        const multiplicationContent = document.getElementById("multiplication-content");
+        const divisionContent = document.getElementById("division-content");
+
+        if (dropdown.value === "addition") {
+          additionContent.style.display = "block";
+          subtractionContent.style.display = "none";
+          multiplicationContent.style.display = "none";
+          divisionContent.style.display = "none";
+        } else if (dropdown.value === "subtraction") {
+          additionContent.style.display = "none";
+          subtractionContent.style.display = "block";
+          multiplicationContent.style.display = "none";
+          divisionContent.style.display = "none";
+        } else if (dropdown.value === "multiplication") {
+          additionContent.style.display = "none";
+          subtractionContent.style.display = "none";
+          multiplicationContent.style.display = "block";
+          divisionContent.style.display = "none";
+        } else if (dropdown.value === "division") {
+          additionContent.style.display = "none";
+          subtractionContent.style.display = "none";
+          multiplicationContent.style.display = "none";
+          divisionContent.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
